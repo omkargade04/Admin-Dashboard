@@ -1,9 +1,8 @@
 "use client";
-require('dotenv').config();
+require("dotenv").config();
 import React, { useState } from "react";
 import axios from "axios";
-import { useRouter } from 'next/navigation';
-
+import { useRouter } from "next/navigation";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -11,19 +10,20 @@ const Login = () => {
   const [values, setValues] = useState({
     username: "",
     password: "",
-  })
-  const [error, setError] = useState(null)
+  });
+  const [error, setError] = useState(null);
   const router = useRouter();
   axios.defaults.withCredentials = true;
   const handleSubmit = async (event) => {
     event.preventDefault();
-    try{
-      const response = await axios.post(`http://localhost:5000/api/admin/login`,
-        event
-      )
-      router.push("/dashboard")
-    }catch(err){
-      console.log("first")
+    try {
+      const response = await axios.post(
+        `${process.env.BASE_URL}/api/admin/login`,
+        { username, password }
+      );
+      router.push("/dashboard");
+    } catch (err) {
+      console.log("first");
     }
   };
 
