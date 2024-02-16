@@ -42,6 +42,7 @@ const createAdmin = async (req, res) => {
 
 const login = async (req, res) => {
   const { username, password } = req.body;
+  console.log(req.body);
 
   if (!username || !password) {
     return res.status(400).json({
@@ -72,6 +73,9 @@ const login = async (req, res) => {
               message: "Login Successful",
               id: result[0].id,
             });
+          }
+          if(!response){
+            console.log("No response")
           }
         });
       }
@@ -127,13 +131,13 @@ const createUser = async (req, res) => {
     delete userData.password;
 
     res.status(200).send({
-      success: true,
+      status: true,
       message: "New User Created",
       data: userData.values,
     });
   } catch (err) {
     console.log(err);
-    res.status(500).send({ error: true, message: "Internal Server Error" });
+    res.status(500).send({ status: false, message: "Internal Server Error" });
   }
 };
 
@@ -163,6 +167,7 @@ const getAUser = async (req, res) => {
       "SELECT * FROM users WHERE id = ?",
       [id],
       (err, results) => {
+        
         if (err) {
           console.error(err);
         } else {
@@ -184,9 +189,9 @@ const editUsers = async (req, res) => {
   const id = req.params.id;
   const {name, username, email} = req.body;
   try {
-    connection.query("UPDATE user set name=?, username=?, email=?", [name, username, email, id], (err, result) => {
+    connection.query("UPDATE users set name=?, username=?, email=? WHERE id=?", [name, username, email, id], (err, result) => {
       if(err) return res.json({status: false, message: "Query Error"+ err});
-      else res.status(200).send({status: true, message: "User updated", data: result})
+      else res.status(200).send({status: true, message: "User updated successfully", data: result})
     });
   } catch (err) {
     throw err
@@ -196,7 +201,7 @@ const editUsers = async (req, res) => {
 const deleteUser = async(req, res) => {
   const id = req.params.id;
   try {
-    connection.query("DELETE FROM USER WHERE id=?", [id], (err, result) => {
+    connection.query("DELETE FROM users WHERE id=?", [id], (err, result) => {
       if(err) return res.json({status: false, message: "Query Error"+ err});
       else res.status(200).send({status: true, message: "User deleted", data: result})
     });

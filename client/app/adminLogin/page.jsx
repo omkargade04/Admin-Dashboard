@@ -1,30 +1,41 @@
 "use client";
-require("dotenv").config();
+import dotenv from "dotenv";
 import React, { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
+const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
+
+dotenv.config();
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [values, setValues] = useState({
-    username: "",
-    password: "",
-  });
-  const [error, setError] = useState(null);
+
   const router = useRouter();
   axios.defaults.withCredentials = true;
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post(
-        `${process.env.BASE_URL}/api/admin/login`,
-        { username, password }
-      );
-      router.push("/dashboard");
+      const response = await axios.post(`${baseURL}/api/admin/login`, {
+        username,
+        password,
+      });
+      console.log(response);
+      if (response.data.status) {
+        toast.success(response.data.message);
+        router.push("/dashboard");
+      } else {
+        toast.error(response.data.message);
+      }
     } catch (err) {
-      console.log("first");
+      console.log("error", err.message);
     }
+    // axios
+    //   .post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/admin/login`, {username, password})
+    //   .then((res) => console.log(res))
+    //   .catch((err) => console.log(err));
   };
 
   return (
@@ -34,6 +45,7 @@ const Login = () => {
           <h1 className="flex justify-center items-center  font-semibold text-2xl mb-5">
             Admin Log In
           </h1>
+
           <input
             className="w-full h-10 sm:h-12 p-3 mb-4 rounded outline-none placeholder-slate-500"
             type="email"
@@ -49,10 +61,10 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           <button
-            className="w-full h-10 sm:h-12  p-2 mb-3 bg-slate-300 rounded hover:bg-white"
+            className="w-full h-10 sm:h-12 font-medium p-2 mb-3 bg-slate-300 rounded hover:bg-white"
             onClick={handleSubmit}
           >
-            <p className="font-medium">Log in</p>
+            Log In
           </button>
         </div>
       </div>

@@ -48,7 +48,7 @@ const login = async (req, res) => {
             );
             console.log(token)
             res.cookie('token', token)
-            return res.json({status: true, message: "Login Successful", id: result[0].id});
+            return res.json({status: true, message: "Login Successful", data: result, id: result[0].id});
           }
         });
       }

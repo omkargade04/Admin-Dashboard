@@ -2,31 +2,36 @@
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-require("dotenv").config();
+import dotenv from "dotenv";
+import { toast } from "sonner";
+
+dotenv.config();
+
+const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
 
 const page = () => {
   const [user, setUser] = useState([]);
   const getData = async (req, res) => {
     try {
-      const response = await axios.get(
-        `${process.env.BASE_URL}/api/admin/getAllUsers`
-      );
+      const response = await axios.get(`${baseURL}/api/admin/getAllUsers`);
       const data = await response.data.data;
       setUser(data);
     } catch (err) {
       throw err;
     }
   };
-  const handleDelete = async(id) => {
-    await axios.delete(`${process.env.BASE_URL}/api/admin/deleteUser`+id)
-    .then(result => {
-      if(result.data.status){
-        window.location.reload();
-      }else{
-        alert(result.data.message);
-      }
-    })
-  }
+  const handleDelete = async (id) => {
+    await axios
+      .delete(`${baseURL}/api/admin/deleteUser/` + id)
+      .then((result) => {
+        if (result.data.status) {
+          toast.success(result.data.message);
+          window.location.reload();
+        } else {
+          alert(result.data.message);
+        }
+      });
+  };
   useEffect(() => {
     getData();
   }, []);
@@ -45,21 +50,35 @@ const page = () => {
             </thead>
             <tbody>
               {user.map((e) => (
-                <tr>
-                  <td>{e.name}</td>
-                  <td>{e.email}</td>
+                <tr className="bg-slate-200">
+                  <td className="p-4">{e.name}</td>
+                  <td className="p-4">{e.email}</td>
                   <td>
-                    <Link href="/admin/editUser/:id">Edit</Link>
-                    <button onClick={()=>handleDelete(e.id)}>Delete</button>
+                    <button className="bg-blue-400 rounded me-2 ">
+                      <Link href={`/editUser/${e.id}`} className="p-4">
+                        Edit
+                      </Link>
+                    </button>
+
+                    <button
+                      className="bg-red-400 rounded"
+                      onClick={() => handleDelete(e.id)}
+                    >
+                      Delete
+                    </button>
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
-        <button className=" mb-3 bg-slate-400 rounded hover:bg-slate-300">
-          <Link href="/newUser">Create New User</Link>
-        </button>
+        <div className="pt-10">
+          <button className=" mb-3 bg-slate-400 rounded  hover:bg-slate-300">
+            <Link href="/newUser">
+              <p className="m-3">Create New User</p>
+            </Link>
+          </button>
+        </div>
       </div>
     </main>
   );

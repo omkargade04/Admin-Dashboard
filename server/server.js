@@ -1,15 +1,17 @@
 const express = require("express");
 const cors = require("cors");
+require('dotenv').config();
 
 const app = express();
 const port = process.env.PORT || 5000;
 
 app.use(express.json());
+
 app.use(cors({
-  origin: [`${process.env.NEXT_URL}`],
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true
+  origin: `${process.env.NEXT_URL}`,
+  credentials: true,
 }));
+
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/admin", require("./routes/admin.routes.js"));
