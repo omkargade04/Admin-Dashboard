@@ -35,21 +35,22 @@ const EditUser = () => {
   };
 
   useEffect(() => {
-    axios
-      .get(`${baseURL}/api/admin/getAUser/` + id)
+    const fetchUser = async() => {
+      try{
+        const response = await axios.get(`${baseURL}/api/admin/getAUser/`+id);
+        const data = await response.data;
+        setUser((prevUser) => ({
+          ...prevUser,
+          name: data.data[0].name,
+          username: data.data[0].username,
+          email: data.data[0].email,
+        }))
+      }catch(err){
+        console.log(err.message);
+      }
+    };
 
-      .then((result) => {
-        console.log(result.data);
-        setUser({
-          ...user,
-          name: result.data.data[0].name,
-          username: result.data.data[0].username,
-          email: result.data.data[0].email,
-        });
-      })
-      .catch((err) => {
-        throw err;
-      });
+    fetchUser();
   }, [id]);
 
   return (
