@@ -9,19 +9,19 @@ const port = process.env.PORT || 5000;
 
 app.use(express.json());
 
-// const corsOptions = {
-//   origin: ['http://localhost:3000'],
-//   methods: ["GET","PUT","POST","DELETE"],
-//   credentials: true,
-// };
+const corsOptions = {
+  origin: ['http://localhost:3000'],
+  methods: ["GET","PUT","POST","DELETE"],
+  credentials: true,
+};
 
-// app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 
-// app.use((_req, res, next) => {
-//   res.header('Access-Control-Allow-Origin', '*');
-//   res.header('Access-Control-Allow-Headers', '*');
-//   next();
-// });
+app.use((_req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', '*');
+  next();
+});
 
 
 // const corsOptions = {
@@ -31,10 +31,10 @@ app.use(express.json());
 
 // app.use(cors(corsOptions));
 
-app.use(cors({
-  origin: `${process.env.NEXT_URL}`,
-  credentials: true,
-}))
+// app.use(cors({
+//   origin: `${process.env.NEXT_URL}`,
+//   credentials: true,
+// }))
 
 
 app.use(express.urlencoded({ extended: true }));
