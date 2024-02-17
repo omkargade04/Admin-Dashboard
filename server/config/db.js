@@ -2,7 +2,7 @@ require("dotenv").config();
 const mysql = require("mysql2");
 const fs = require('fs');
 
-const caCert = fs.readFileSync('./config/ca.pem'); 
+const caCert = fs.readFileSync('./config/ca.pem');
 
 
 const pool = mysql.createPool ({
