@@ -19,6 +19,7 @@ const Page = () => {
         const response = await axios.get(`${baseURL}/api/admin/getAUser/` + id);
         const data = await response.data;
         const name = data.data[0].name;
+        console.log(name);
         setUser(name);
       } catch (err) {
         console.error(err.message); // Log errors for debugging

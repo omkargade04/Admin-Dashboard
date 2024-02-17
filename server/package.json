@@ -18,11 +18,13 @@
     "cookie": "^0.6.0",
     "cookies": "^0.9.1",
     "cors": "^2.8.5",
+    "cron": "^3.1.6",
     "dotenv": "^16.4.1",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.2",
     "mysql": "^2.18.1",
     "mysql2": "^3.9.1",
+    "node-cron": "^3.0.3",
     "nodemon": "^3.0.3",
     "validator": "^13.11.0"
   }

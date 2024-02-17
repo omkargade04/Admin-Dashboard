@@ -20,14 +20,17 @@ const Page = () => {
     event.preventDefault();
     try {
       const response = await axios.post(`${baseURL}/api/user/login`, user);
-      console.log(response.data.data);
-      if (response.data.status) {
-        toast.success(response.data.message);
-        router.push(`/user-display/${response.data.id}`);
+      const data = await response.data;
+      console.log(data.data);
+      if (data.status) {
+        toast.success(data.message);
+        router.push(`/user-display/${data.id}`);
       } else {
         toast.error(response.data.message);
       }
-    } catch (err) {}
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (

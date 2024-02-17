@@ -1,6 +1,6 @@
 require("dotenv").config();
 const bcrypt = require("bcrypt");
-const connection = require("../config/db.js");
+const pool = require("../config/db.js");
 const generateUserToken = require("../utils/generateUserToken.js");
 const validator = require("validator");
 const jwt = require("jsonwebtoken");
@@ -30,7 +30,7 @@ const login = async (req, res) => {
     const userQueryParams = [email];
     console.log(email);
     console.log(password);
-    connection.query(userQuery, userQueryParams, (err, result) => {
+    pool.query(userQuery, userQueryParams, (err, result) => {
       if (err) return res.json({ status: false, message: "Query Error" });
       if (result.length > 0) {
         bcrypt.compare(password, result[0].password, (err, response) => {
