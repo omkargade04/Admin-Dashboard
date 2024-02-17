@@ -14,12 +14,20 @@ app.use(express.json());
 //   credentials: true,
 // };
 
-app.use(cors());
+// app.use(cors(corsOptions));
 
 // app.use((req, res, next) => {
 //   res.header('Access-Control-Allow-Credentials', true);
 //   next();
 // });
+
+const corsOptions = {
+  origin: '*',
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
+
 
 app.use(express.urlencoded({ extended: true }));
 
