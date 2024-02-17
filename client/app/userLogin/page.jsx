@@ -22,7 +22,7 @@ const Login = () => {
       console.log(response.data.data);
       if (response.data.status) {
         toast.success(response.data.message);
-        router.push(`/userDisplay`);
+        router.push(`/userDisplay/${response.data.id}`);
       } else {
         toast.error(response.data.message);
       }

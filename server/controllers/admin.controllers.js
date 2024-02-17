@@ -213,10 +213,10 @@ const deleteUser = async(req, res) => {
 const logout = async (req, res) => {
   try {
     res.clearCookie("token");
-    res.status(200).json({ success: true, message: "Logout Successfull." });
+    res.status(200).json({ status: true, message: "Logout Successfull." });
   } catch (err) {
     console.log(err);
-    res.status(500).json({ error: true, message: "Internal server error!" });
+    res.status(500).json({ status: false, message: "Internal server error!" });
   }
 };
 
