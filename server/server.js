@@ -10,8 +10,8 @@ const port = process.env.PORT || 5000;
 app.use(express.json());
 
 const corsOptions = {
-  origin: `${process.env.NEXT_URL}`,
-  methods: "GET,PUT,POST,DELETE",
+  origin: ['http:localhost:3000'],
+  methods: ["GET","PUT","POST","DELETE"],
   credentials: true,
 };
 
