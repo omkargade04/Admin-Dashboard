@@ -2,7 +2,7 @@ require("dotenv").config();
 const mysql = require("mysql2");
 const fs = require('fs');
 
-//const caCert = fs.readFileSync('./config/ca.pem'); 
+const caCert = fs.readFileSync('./config/ca.pem'); 
 
 
 const pool = mysql.createPool ({
@@ -12,7 +12,7 @@ const pool = mysql.createPool ({
   password: process.env.MYSQL_PASSWORD,
   database: process.env.MYSQL_DATABASE,
   ssl: {
-    //ca: caCert,
+    ca: caCert,
     rejectUnauthorized: false,
   }
 });
