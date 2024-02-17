@@ -20,8 +20,6 @@ app.use(cors(corsOptions));
 app.use((_req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', '*');
-  // res.header('Access-Control-Allow-Methods: POST, PUT, PATCH, GET, DELETE, OPTION')
-
   next();
 });
 
@@ -32,6 +30,11 @@ app.use((_req, res, next) => {
 // };
 
 // app.use(cors(corsOptions));
+
+// app.use(cors({
+//   origin: `${process.env.NEXT_URL}`,
+//   credentials: true,
+// }))
 
 
 app.use(express.urlencoded({ extended: true }));
