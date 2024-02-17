@@ -8,6 +8,7 @@ const {
   getAUser,
   editUsers,
   deleteUser,
+  getAdmin,
 } = require("../controllers/admin.controllers");
 const router = express.Router();
 const {
@@ -23,5 +24,6 @@ router.put("/editUsers/:id", editUsers);
 router.delete("/deleteUser/:id", deleteUser);
 router.post("/createUser", validateUserData, createUser);
 router.get("/logout", logout);
+router.get("/getAdmin", getAdmin);
 
 module.exports = router;

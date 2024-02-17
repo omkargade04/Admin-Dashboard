@@ -1,20 +1,25 @@
 require("dotenv").config();
-const mysql = require("mysql");
+const mysql = require("mysql2");
+const fs = require('fs');
 
-const config = {
+const caCert = fs.readFileSync('./config/ca.pem'); 
+
+
+const pool = mysql.createPool ({
   host: process.env.MYSQL_HOST,
   user: process.env.MYSQL_USER,
+  port: process.env.MYSQL_PORT,
   password: process.env.MYSQL_PASSWORD,
   database: process.env.MYSQL_DATABASE,
-};
-
-const connection = mysql.createConnection(config);
-
-connection.connect((err) => {
-  if (err) {
-    console.log(err)
+  ssl: {
+    ca: caCert,
   }
-  console.log("Database connection successful");
 });
 
-module.exports = connection;
+if(pool){
+  console.log("Database connected");
+}else{
+  console.log("Error connecting db");
+}
+
+module.exports = pool;
