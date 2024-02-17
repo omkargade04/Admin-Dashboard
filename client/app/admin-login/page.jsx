@@ -31,7 +31,7 @@ const Page = () => {
         toast.error(response.data.message);
       }
     } catch (err) {
-      console.log("error", err.message);
+      console.log("error", err);
     }
     // axios
     //   .post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/admin/login`, {username, password})

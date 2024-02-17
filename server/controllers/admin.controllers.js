@@ -68,6 +68,7 @@ const login = async (req, res) => {
               `${process.env.TOKEN_SECRET}`,
               { expiresIn: "1d" }
             );
+            console.log(result); console.log(response)
             res.cookie("token", token);
             return res.json({
               status: true,
