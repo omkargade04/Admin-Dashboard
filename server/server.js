@@ -9,24 +9,24 @@ const port = process.env.PORT || 5000;
 
 app.use(express.json());
 
-// const corsOptions = {
-//   origin: `${process.env.NEXT_URL}`,
-//   credentials: true,
-// };
-
-// app.use(cors(corsOptions));
-
-// app.use((req, res, next) => {
-//   res.header('Access-Control-Allow-Credentials', true);
-//   next();
-// });
-
 const corsOptions = {
-  origin: '*',
+  origin: `${process.env.NEXT_URL}`,
   credentials: true,
 };
 
 app.use(cors(corsOptions));
+
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Credentials', true);
+  next();
+});
+
+// const corsOptions = {
+//   origin: '*',
+//   credentials: true,
+// };
+
+// app.use(cors(corsOptions));
 
 
 app.use(express.urlencoded({ extended: true }));
