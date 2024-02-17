@@ -8,7 +8,7 @@ require("dotenv").config();
 
 const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
 
-const page = () => {
+const EditUser = () => {
   const router = useRouter();
   const { id } = useParams();
   const [user, setUser] = useState({
@@ -50,7 +50,7 @@ const page = () => {
       .catch((err) => {
         throw err;
       });
-  }, []);
+  }, [id]);
 
   return (
     <main>
@@ -92,4 +92,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default EditUser;

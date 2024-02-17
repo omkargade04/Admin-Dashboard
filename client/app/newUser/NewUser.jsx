@@ -5,7 +5,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
-const page = () => {
+const NewUser = () => {
   // const [name, setName] = useState("");
   // const [username, setUsername] = useState("");
   // const [email, setEmail] = useState("");
@@ -87,4 +87,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default NewUser;

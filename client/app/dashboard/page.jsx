@@ -11,7 +11,7 @@ import { useRouter } from "next/navigation";
 
 const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
 
-const page = () => {
+const Page = () => {
   const [user, setUser] = useState([]);
   const router = useRouter()
   const getData = async (req, res) => {
@@ -68,8 +68,8 @@ const page = () => {
             <tbody>
               {user.map((e) => (
                 <tr className="border border-1 border-black p-2">
-                  <td className="border border-1 border-black p-2">{e.name}</td>
-                  <td className="border border-1 border-black p-2">
+                  <td key={e.id} className="border border-1 border-black p-2">{e.name}</td>
+                  <td key={e.id} className="border border-1 border-black p-2">
                     {e.email}
                   </td>
                   <td className="flex justify-evenly">
@@ -107,4 +107,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

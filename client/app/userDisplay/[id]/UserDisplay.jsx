@@ -5,7 +5,9 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 require("dotenv").config();
-const page = () => {
+
+
+const UserDisplay = () => {
   const { id } = useParams();
   const [user, setUser] = useState("");
   const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
@@ -17,15 +19,14 @@ const page = () => {
         const response = await axios.get(`${baseURL}/api/admin/getAUser/` + id);
         const data = await response.data;
         const name = data.data[0].name;
-        console.log(name);
         setUser(name);
       } catch (err) {
-        console.log(err.message);
+        console.error(err.message); // Log errors for debugging
       }
     };
 
     fetchUser();
-  }, [id]);
+  }, [id, baseURL]);
 
   console.log(user);
 
@@ -61,4 +62,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default UserDisplay;
