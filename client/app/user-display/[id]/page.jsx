@@ -7,7 +7,7 @@ import { toast } from "sonner";
 require("dotenv").config();
 
 
-const UserDisplay = () => {
+const Page = () => {
   const { id } = useParams();
   const [user, setUser] = useState("");
   const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
@@ -62,4 +62,4 @@ const UserDisplay = () => {
   );
 };
 
-export default UserDisplay;
+export default Page;

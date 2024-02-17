@@ -13,12 +13,12 @@ export default function Home() {
           <button
             className="w-full h-10 sm:h-12  p-2 mb-3 bg-slate-300 rounded hover:bg-white"
           >
-            <Link href="/adminLogin">Admin Login</Link>
+            <Link href="/admin-login">Admin Login</Link>
           </button>
           <button
             className="w-full h-10 sm:h-12  p-2 mb-3 bg-slate-300 rounded hover:bg-white"
           >
-            <Link href="/userLogin">User Login</Link>
+            <Link href="/user-login">User Login</Link>
           </button>
         </div>
       </div>

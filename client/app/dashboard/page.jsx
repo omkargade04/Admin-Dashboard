@@ -13,7 +13,7 @@ const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
 
 const Page = () => {
   const [user, setUser] = useState([]);
-  const router = useRouter()
+  const router = useRouter();
   const getData = async (req, res) => {
     try {
       const response = await axios.get(`${baseURL}/api/admin/getAllUsers`);
@@ -40,10 +40,10 @@ const Page = () => {
     try {
       const response = await axios.get(`${baseURL}/api/admin/logout`);
       const data = await response.data;
-      console.log(data)
+      console.log(data);
       if (response.data.status) {
         toast.success(response.data.message);
-        router.push('/')
+        router.push("/");
       }
     } catch (err) {
       console.log(err.message);
@@ -67,14 +67,14 @@ const Page = () => {
             </thead>
             <tbody>
               {user.map((e) => (
-                <tr className="border border-1 border-black p-2">
-                  <td key={e.id} className="border border-1 border-black p-2">{e.name}</td>
-                  <td key={e.id} className="border border-1 border-black p-2">
+                <tr key={e.id} className="border border-1 border-black p-2">
+                  <td className="border border-1 border-black p-2">{e.name}</td>
+                  <td className="border border-1 border-black p-2">
                     {e.email}
                   </td>
                   <td className="flex justify-evenly">
                     <button>
-                      <Link href={`/editUser/${e.id}`} className="">
+                      <Link href={`/edit-user/${e.id}`} className="">
                         <MdEdit className="h-6 w-6" />
                       </Link>
                     </button>
@@ -90,7 +90,7 @@ const Page = () => {
         </div>
         <div className="pt-10">
           <button className=" mb-3 bg-slate-400 rounded  hover:bg-slate-300">
-            <Link href="/newUser">
+            <Link href="/new-user">
               <p className="m-3">Create New User</p>
             </Link>
           </button>
