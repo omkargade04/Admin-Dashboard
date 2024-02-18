@@ -19,6 +19,10 @@ const Page = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
+      console.log({
+        username,
+        password,
+      });
       const response = await axios.post(`${baseURL}/api/admin/login`, {
         username,
         password,
@@ -49,7 +53,7 @@ const Page = () => {
 
           <input
             className="w-full h-10 sm:h-12 p-3 mb-4 rounded outline-none placeholder-slate-500"
-            type="email"
+            type="text"
             placeholder="Username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}

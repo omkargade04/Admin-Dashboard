@@ -31,11 +31,6 @@ app.use(express.json());
 
 // app.use(cors(corsOptions));
 
-app.use(cors({
-  origin: `${process.env.NEXT_URL}`,
-  credentials: true,
-}))
-
 
 app.use(express.urlencoded({ extended: true }));
 
