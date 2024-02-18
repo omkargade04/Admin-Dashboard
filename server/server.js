@@ -8,9 +8,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 app.use(express.json());
-
-app.use(cors());
-
+app.use(cors())
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/admin", require("./routes/admin.routes.js"));
