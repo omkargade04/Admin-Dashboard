@@ -28,8 +28,8 @@ const Page = () => {
       .delete(`${baseURL}/api/admin/deleteUser/` + id)
       .then((result) => {
         if (result.data.status) {
-          toast.success(result.data.message);
           window.location.reload();
+          toast.success(result.data.message);
         } else {
           alert(result.data.message);
         }
