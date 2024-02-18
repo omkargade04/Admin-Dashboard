@@ -9,7 +9,7 @@ const port = process.env.PORT || 5000;
 
 app.use(express.json());
 
-const whitelist = ["*"];
+const whitelist = ["https://admin-dashboard-xi-woad.vercel.app"];
 
 const corsOptions = {
   origin: function (origin, callback) {
