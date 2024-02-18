@@ -10,7 +10,7 @@ const port = process.env.PORT || 5000;
 app.use(express.json());
 
 const corsOptions = {
-  origin: ["http://localhost:3000"],
+  origin: ["https://admin-dashboard-xi-woad.vercel.app/"],
   methods: ["GET", "PUT", "POST", "DELETE"],
   credentials: true,
 };
