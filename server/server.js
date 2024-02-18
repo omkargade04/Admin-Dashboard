@@ -30,7 +30,7 @@ app.get("/ping", (req, res) => {
   res.status(200).json("pong....");
 });
 
-const API_ENDPOINT = "https://admin-dashboard-xi14.onrender.com";
+const API_ENDPOINT = "https://admin-dashboard-ju7j.onrender.com";
 
 const makeApiRequest = async () => {
   try {
